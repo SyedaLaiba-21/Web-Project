@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ZESTORA — Where Delulu Meets Delicious</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700;1,900&family=Cormorant+Upright:wght@300;400;500;600;700&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-plate">
+   <img src="Logo .jpeg" class="loader-logo-img" alt="Zestora Logo"/>
+  </div>
+  <div class="loader-brand">ZESTORA</div>
+  <div class="loader-tagline">Where Delulu Meets Delicious</div>
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+  <div class="loader-pct" id="loaderPct">LOADING · 0%</div>
+</div>
+
+<!-- SIDEBAR OVERLAY + SIDEBAR -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+   <img src="Logo .jpeg" class="sidebar-logo-img" alt="Zestora"/>
+    <div class="sidebar-brand">ZESTORA</div>
+    <div class="sidebar-tagline">Where Delulu Meets Delicious</div>
+  </div>
+  <nav style="flex:1;padding:10px 0;overflow-y:auto">
+    <div class="nav-section-label">Overview</div>
+    <button class="nav-item active" onclick="showPage('dashboard',this)"><span class="nav-icon">📊</span>Dashboard</button>
+    <button class="nav-item" onclick="showPage('menu',this)"><span class="nav-icon">🍽️</span>Menu Items<span class="nav-badge" id="menuBadge">12</span></button>
+    <button class="nav-item" onclick="showPage('categories',this)"><span class="nav-icon">📂</span>Categories<span class="nav-badge" id="catBadge">5</span></button>
+<button class="nav-item" onclick="showPage('specials',this)"><span class="nav-icon">⭐</span>Specials & Offers<span class="nav-badge" id="specialBadge">3</span></button>
+    <div class="nav-divider"></div>
+    <div class="nav-section-label">Operations</div>
+    <button class="nav-item" onclick="showPage('orders',this)"><span class="nav-icon">🧾</span>Live Orders<span class="nav-badge">7</span></button>
+    <button class="nav-item" onclick="showPage('analytics',this)"><span class="nav-icon">📈</span>Analytics</button>
+    <div class="nav-divider"></div>
+    <div class="nav-section-label">System</div>
+    <button class="nav-item" onclick="showPage('settings',this)"><span class="nav-icon">⚙️</span>Settings</button>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <div class="user-avatar">ZA</div>
+      <div>
+        <div class="user-name">Zestora Admin</div>
+        <div class="user-role">Restaurant Manager</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<header class="mobile-header">
+  <button class="hamburger" onclick="toggleSidebar()">☰</button>
+  <div class="mobile-brand">ZESTORA</div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+<!-- DASHBOARD -->
+<div class="page active" id="page-dashboard">
+  <div class="topbar">
+    <div>
+      <div class="topbar-eyebrow">Zestora · Live Dashboard</div>
+      <div class="topbar-title">Good Evening, Chef 👋</div>
+      <div class="topbar-sub">Where every dish tells a story</div>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn btn-ghost btn-sm" onclick="exportMenu()">↓ Export</button>
+      <button class="btn btn-primary" onclick="openModal('addItemModal')">+ Add Dish</button>
+    </div>
+  </div>
+  <div class="content">
+    <div class="stats-grid">
+      <div class="stat-card sc-gold">
+        <div class="stat-top"><div class="stat-icon-box">🍽️</div><div class="stat-trend trend-up">↑ +3 this week</div></div>
+        <div class="stat-value" id="totalItems">12</div>
+        <div class="stat-label">Total Menu Items</div>
+      </div>
+      <div class="stat-card sc-green">
+        <div class="stat-top"><div class="stat-icon-box">✅</div><div class="stat-trend trend-up">↑ Available</div></div>
+        <div class="stat-value" id="availItems">10</div>
+        <div class="stat-label">Available Now</div>
+      </div>
+      <div class="stat-card sc-crimson">
+        <div class="stat-top"><div class="stat-icon-box">🧾</div><div class="stat-trend trend-up">↑ 12%</div></div>
+        <div class="stat-value">47</div>
+        <div class="stat-label">Orders Today</div>
+      </div>
+      <div class="stat-card sc-amber">
+        <div class="stat-top"><div class="stat-icon-box">💰</div><div class="stat-trend trend-up">↑ 8.4%</div></div>
+        <div class="stat-value">34,240</div>
+        <div class="stat-label">Revenue Today</div>
+      </div>
+    </div>
+
+    <div class="dash-row">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Recent Activity</div>
+          <button class="btn btn-ghost btn-sm">View All</button>
+        </div>
+        <div class="card-body">
+          <div class="activity-item"><div class="a-dot a-crimson"></div><div><div class="activity-text"><strong>Truffle Arancini</strong> marked unavailable — ingredient stock low</div><div class="activity-time">2 minutes ago</div></div></div>
+          <div class="activity-item"><div class="a-dot a-green"></div><div><div class="activity-text"><strong>Mango Cheesecake</strong> added to Desserts — delulu approved ✨</div><div class="activity-time">18 minutes ago</div></div></div>
+          <div class="activity-item"><div class="a-dot a-gold"></div><div><div class="activity-text">Price updated on <strong>Grilled Sea Bass</strong> from 2800 → 3100</div><div class="activity-time">1 hour ago</div></div></div>
+          <div class="activity-item"><div class="a-dot a-gold"></div><div><div class="activity-text">Special <strong>"Date Night Duo"</strong> activated for Friday evenings</div><div class="activity-time">3 hours ago</div></div></div>
+          <div class="activity-item"><div class="a-dot a-green"></div><div><div class="activity-text"><strong>Weekend Brunch</strong> category reached 200+ orders milestone 🎉</div><div class="activity-time">5 hours ago</div></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Today's Stars</div></div>
+        <div class="card-body">
+          <div class="top-item"><div class="top-rank">#1</div><img class="top-thumb" src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?w=80&h=80&fit=crop" alt=""/><div class="top-info"><div class="top-name">Beef Bourguignon</div><div class="top-cat">Mains</div></div><div class="top-bar-wrap"><div class="top-bar" style="width:95%"></div></div><div class="top-count">38</div></div>
+          <div class="top-item"><div class="top-rank">#2</div><img class="top-thumb" src="https://images.unsplash.com/photo-1546793665-c74683f339c1?w=80&h=80&fit=crop" alt=""/><div class="top-info"><div class="top-name">Caesar Salad</div><div class="top-cat">Starters</div></div><div class="top-bar-wrap"><div class="top-bar" style="width:74%"></div></div><div class="top-count">30</div></div>
+          <div class="top-item"><div class="top-rank">#3</div><img class="top-thumb" src="https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?w=80&h=80&fit=crop" alt=""/><div class="top-info"><div class="top-name">Crème Brûlée</div><div class="top-cat">Desserts</div></div><div class="top-bar-wrap"><div class="top-bar" style="width:60%"></div></div><div class="top-count">24</div></div>
+          <div class="top-item"><div class="top-rank">#4</div><img class="top-thumb" src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=80&h=80&fit=crop" alt=""/><div class="top-info"><div class="top-name">Eggs Benedict</div><div class="top-cat">Brunch</div></div><div class="top-bar-wrap"><div class="top-bar" style="width:47%"></div></div><div class="top-count">19</div></div>
+          <div class="top-item"><div class="top-rank">#5</div><img class="top-thumb" src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=80&h=80&fit=crop" alt=""/><div class="top-info"><div class="top-name">Tiramisu</div><div class="top-cat">Desserts</div></div><div class="top-bar-wrap"><div class="top-bar" style="width:36%"></div></div><div class="top-count">15</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Menu Sections at a Glance</div>
+        <button class="btn btn-outline btn-sm" onclick="showPage('categories',document.querySelector('.nav-item:nth-child(3)'))">Manage →</button>
+      </div>
+      <div class="card-body">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px">
+          <div style="background:linear-gradient(135deg,rgba(139,0,0,.06),rgba(212,175,55,.06));border:1px solid var(--border2);border-radius:var(--r-sm);padding:14px;display:flex;align-items:center;gap:10px">
+            <span style="font-size:24px">🥗</span><div><div style="font-weight:700;font-size:13px;color:var(--crimson)">Starters</div><div style="font-size:11px;color:var(--gold-dk);font-weight:700">3 dishes</div></div>
+          </div>
+          <div style="background:linear-gradient(135deg,rgba(139,0,0,.06),rgba(212,175,55,.06));border:1px solid var(--border2);border-radius:var(--r-sm);padding:14px;display:flex;align-items:center;gap:10px">
+            <span style="font-size:24px">🍲</span><div><div style="font-weight:700;font-size:13px;color:var(--crimson)">Mains</div><div style="font-size:11px;color:var(--gold-dk);font-weight:700">4 dishes</div></div>
+          </div>
+          <div style="background:linear-gradient(135deg,rgba(139,0,0,.06),rgba(212,175,55,.06));border:1px solid var(--border2);border-radius:var(--r-sm);padding:14px;display:flex;align-items:center;gap:10px">
+            <span style="font-size:24px">🍮</span><div><div style="font-weight:700;font-size:13px;color:var(--crimson)">Desserts</div><div style="font-size:11px;color:var(--gold-dk);font-weight:700">3 dishes</div></div>
+          </div>
+          <div style="background:linear-gradient(135deg,rgba(139,0,0,.06),rgba(212,175,55,.06));border:1px solid var(--border2);border-radius:var(--r-sm);padding:14px;display:flex;align-items:center;gap:10px">
+            <span style="font-size:24px">🥂</span><div><div style="font-weight:700;font-size:13px;color:var(--crimson)">Beverages</div><div style="font-size:11px;color:var(--gold-dk);font-weight:700">2 drinks</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MENU ITEMS -->
+<div class="page" id="page-menu">
+  <div class="topbar">
+    <div>
+      <div class="topbar-eyebrow">Zestora · Catalogue</div>
+      <div class="topbar-title">Menu Items</div>
+      <div class="topbar-sub">Every dish, every detail</div>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn btn-ghost btn-sm" onclick="exportMenu()">↓ Export CSV</button>
+      <button class="btn btn-primary" onclick="openModal('addItemModal')">+ Add Dish</button>
+    </div>
+  </div>
+  <div class="content">
+    <div class="menu-toolbar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="menuSearch" placeholder="Search your menu…" oninput="filterMenu()"/>
+      </div>
+      <div class="filter-tabs" id="filterTabs">
+        <div class="filter-tab active" onclick="setFilter('all',this)">All</div>
+        <div class="filter-tab" onclick="setFilter('Starters',this)">Starters</div>
+        <div class="filter-tab" onclick="setFilter('Mains',this)">Mains</div>
+        <div class="filter-tab" onclick="setFilter('Desserts',this)">Desserts</div>
+        <div class="filter-tab" onclick="setFilter('Beverages',this)">Beverages</div>
+        <div class="filter-tab" onclick="setFilter('Brunch',this)">Brunch</div>
+      </div>
+      <div class="view-toggles">
+        <button class="view-toggle active" id="gridToggle" onclick="setView('grid')" title="Grid">⊞</button>
+        <button class="view-toggle" id="listToggle" onclick="setView('list')" title="Table">☰</button>
+      </div>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+    <div class="menu-table-wrap hidden" id="menuTable">
+      <table class="menu-tbl">
+        <thead><tr><th>Dish</th><th>Category</th><th>Price</th><th>Tags</th><th>Available</th><th>Actions</th></tr></thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<div class="page" id="page-categories">
+  <div class="topbar">
+    <div>
+      <div class="topbar-eyebrow">Zestora · Organisation</div>
+      <div class="topbar-title">Categories</div>
+      <div class="topbar-sub">Structure your culinary story</div>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn btn-primary" onclick="openModal('addCatModal')">+ Add Category</button>
+    </div>
+  </div>
+  <div class="content">
+    <div class="categories-grid" id="categoriesGrid"></div>
+  </div>
+</div>
+
+<!-- SPECIALS -->
+<div class="page" id="page-specials">
+  <div class="topbar">
+    <div>
+      <div class="topbar-eyebrow">Zestora · Promotions</div>
+      <div class="topbar-title">Specials & Offers</div>
+      <div class="topbar-sub">Limited time delulu deals</div>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn btn-primary" onclick="openModal('addSpecialModal')">+ New Special</button>
+    </div>
+  </div>
+  <div class="content"><div class="specials-grid" id="specialsGrid"></div></div>
+</div>
+
+<!-- ORDERS -->
+<div class="page" id="page-orders">
+  <div class="topbar">
+    <div>
+      <div class="topbar-eyebrow">Zestora · Kitchen</div>
+      <div class="topbar-title">Live Orders</div>
+      <div class="topbar-sub">Real-time kitchen flow</div>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn btn-ghost btn-sm" onclick="refreshOrders()">↻ Refresh</button>
+    </div>
+  </div>
+  <div class="content">
+    <div class="orders-stats">
+      <div class="ostat"><div class="ostat-val" style="color:var(--gold-dk)">7</div><div class="ostat-lbl">Active Orders</div></div>
+      <div class="ostat"><div class="ostat-val" style="color:#2d6a4f">40</div><div class="ostat-lbl">Completed Today</div></div>
+      <div class="ostat"><div class="ostat-val" style="color:var(--crimson)">2</div><div class="ostat-lbl">Pending</div></div>
+    </div>
+    <div class="orders-list" id="ordersContainer"></div>
+  </div>
+</div>
+
+<!-- ANALYTICS -->
+<div class="page" id="page-analytics">
+  <div class="topbar">
+    <div>
+      <div class="topbar-eyebrow">Zestora · Insights</div>
+      <div class="topbar-title">Analytics</div>
+      <div class="topbar-sub">Numbers that tell your story</div>
+    </div>
+    <div class="topbar-actions">
+      <select class="form-select" style="width:130px;padding:8px 12px;font-size:12px">
+        <option>Last 7 days</option><option>Last 30 days</option><option>This month</option>
+      </select>
+    </div>
+  </div>
+  <div class="content">
+    <div class="analytics-grid">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Weekly Revenue</div></div>
+        <div class="card-body">
+          <div class="chart-bars" id="revenueChart"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Sales by Category</div></div>
+        <div class="card-body">
+          <div class="pie-container">
+            <svg class="pie-svg" viewBox="0 0 36 36">
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="var(--crimson)" stroke-width="3.8" stroke-dasharray="36 64" stroke-dashoffset="25"/>
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="var(--gold)" stroke-width="3.8" stroke-dasharray="22 78" stroke-dashoffset="-11"/>
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#52b788" stroke-width="3.8" stroke-dasharray="22 78" stroke-dashoffset="-33"/>
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#d97706" stroke-width="3.8" stroke-dasharray="20 80" stroke-dashoffset="-55"/>
+            </svg>
+            <div class="pie-legend">
+              <div class="leg-item"><div class="leg-dot" style="background:var(--crimson)"></div><span>Mains — 36%</span></div>
+              <div class="leg-item"><div class="leg-dot" style="background:var(--gold)"></div><span>Starters — 22%</span></div>
+              <div class="leg-item"><div class="leg-dot" style="background:#52b788"></div><span>Desserts — 22%</span></div>
+              <div class="leg-item"><div class="leg-dot" style="background:#d97706"></div><span>Beverages — 20%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-6">
+      <div class="card-header"><div class="card-title">Top Performing Dishes</div></div>
+      <div class="card-body">
+        <table class="menu-tbl">
+          <thead><tr><th>#</th><th>Dish</th><th>Category</th><th>Orders</th><th>Revenue</th><th>Trend</th></tr></thead>
+          <tbody>
+            <tr><td style="color:var(--text-faint);font-weight:700">1</td><td style="font-family:'Playfair Display',serif;font-weight:700;color:var(--crimson)">Beef Bourguignon</td><td style="color:var(--text-muted);font-style:italic">Mains</td><td style="font-weight:700">38</td><td style="color:var(--gold-dk);font-weight:700">1,1020</td><td style="color:#2d6a4f;font-weight:700">↑ 14%</td></tr>
+            <tr><td style="color:var(--text-faint);font-weight:700">2</td><td style="font-family:'Playfair Display',serif;font-weight:700;color:var(--crimson)">Caesar Salad</td><td style="color:var(--text-muted);font-style:italic">Starters</td><td style="font-weight:700">30</td><td style="color:var(--gold-dk);font-weight:700">3900</td><td style="color:#2d6a4f;font-weight:700">↑ 6%</td></tr>
+            <tr><td style="color:var(--text-faint);font-weight:700">3</td><td style="font-family:'Playfair Display',serif;font-weight:700;color:var(--crimson)">Crème Brûlée</td><td style="color:var(--text-muted);font-style:italic">Desserts</td><td style="font-weight:700">24</td><td style="color:var(--gold-dk);font-weight:700">2640</td><td style="color:var(--crimson);font-weight:700">↓ 2%</td></tr>
+            <tr><td style="color:var(--text-faint);font-weight:700">4</td><td style="font-family:'Playfair Display',serif;font-weight:700;color:var(--crimson)">Eggs Benedict</td><td style="color:var(--text-muted);font-style:italic">Brunch</td><td style="font-weight:700">19</td><td style="color:var(--gold-dk);font-weight:700">2850</td><td style="color:#2d6a4f;font-weight:700">↑ 20%</td></tr>
+            <tr><td style="color:var(--text-faint);font-weight:700">5</td><td style="font-family:'Playfair Display',serif;font-weight:700;color:var(--crimson)">Tiramisu</td><td style="color:var(--text-muted);font-style:italic">Desserts</td><td style="font-weight:700">15</td><td style="color:var(--gold-dk);font-weight:700">1650</td><td style="color:#2d6a4f;font-weight:700">↑ 4%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SETTINGS -->
+<div class="page" id="page-settings">
+  <div class="topbar">
+    <div>
+      <div class="topbar-eyebrow">Zestora · Configuration</div>
+      <div class="topbar-title">Settings</div>
+      <div class="topbar-sub">Fine-tune your restaurant</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="settings-layout">
+      <div class="settings-nav">
+        <button class="stab active" onclick="showStab('general',this)">General</button>
+        <button class="stab" onclick="showStab('display',this)">Display</button>
+        <button class="stab" onclick="showStab('notifications',this)">Alerts</button>
+        <button class="stab" onclick="showStab('users',this)">Team</button>
+      </div>
+      <div>
+        <div class="ssec active card" id="settings-general">
+          <div class="card-header"><div class="card-title">General Settings</div></div>
+          <div class="card-body">
+            <div class="fg"><label class="form-label">Restaurant Name</label><input class="form-input" value="Zestora Fine Dining"/></div>
+            <div class="form-row">
+              <div class="fg"><label class="form-label">Currency</label><select class="form-select"><option>USD ($)</option><option>EUR (€)</option><option>GBP (£)</option><option>PKR (₨)</option></select></div>
+              <div class="fg"><label class="form-label">Tax Rate (%)</label><input class="form-input" type="number" value="8.5"/></div>
+            </div>
+            <div class="fg"><label class="form-label">Tagline</label><input class="form-input" value="Where Delulu Meets Delicious"/></div>
+            <button class="btn btn-primary" onclick="showToast('Settings saved! ✨','success')">Save Changes</button>
+          </div>
+        </div>
+        <div class="ssec card" id="settings-display">
+          <div class="card-header"><div class="card-title">Display Preferences</div></div>
+          <div class="card-body">
+            <div class="setting-row"><div><div class="sr-label">Show item descriptions</div><div class="sr-desc">Display description text under dish names</div></div><div class="toggle-wrap" onclick="toggleSetting(this)"><div class="toggle-track on"><div class="toggle-thumb"></div></div></div></div>
+            <div class="setting-row"><div><div class="sr-label">Show calorie counts</div><div class="sr-desc">Display calorie info on menu cards</div></div><div class="toggle-wrap" onclick="toggleSetting(this)"><div class="toggle-track"><div class="toggle-thumb"></div></div></div></div>
+            <div class="setting-row"><div><div class="sr-label">Highlight popular dishes</div><div class="sr-desc">Badge the top-ordered items automatically</div></div><div class="toggle-wrap" onclick="toggleSetting(this)"><div class="toggle-track on"><div class="toggle-thumb"></div></div></div></div>
+          </div>
+        </div>
+        <div class="ssec card" id="settings-notifications">
+          <div class="card-header"><div class="card-title">Notification Settings</div></div>
+          <div class="card-body">
+            <div class="setting-row"><div><div class="sr-label">New order alerts</div><div class="sr-desc">Notify when a new order is placed</div></div><div class="toggle-wrap" onclick="toggleSetting(this)"><div class="toggle-track on"><div class="toggle-thumb"></div></div></div></div>
+            <div class="setting-row"><div><div class="sr-label">Low stock warnings</div><div class="sr-desc">Alert when ingredients run low</div></div><div class="toggle-wrap" onclick="toggleSetting(this)"><div class="toggle-track on"><div class="toggle-thumb"></div></div></div></div>
+          </div>
+        </div>
+        <div class="ssec card" id="settings-users">
+          <div class="card-header"><div class="card-title">Team Management</div><button class="btn btn-outline btn-sm" onclick="showToast('Invite sent! 🎉','success')">Invite Staff</button></div>
+          <div class="card-body">
+            <table class="menu-tbl">
+              <thead><tr><th>Name</th><th>Role</th><th>Status</th><th></th></tr></thead>
+              <tbody>
+                <tr><td class="tbl-name">Zestora Admin</td><td style="color:var(--text-muted);font-style:italic">Manager</td><td><span class="badge b-veg">Active</span></td><td><button class="btn btn-ghost btn-sm">Edit</button></td></tr>
+                <tr><td class="tbl-name">Rania Hassan</td><td style="color:var(--text-muted);font-style:italic">Head Chef</td><td><span class="badge b-veg">Active</span></td><td><button class="btn btn-ghost btn-sm">Edit</button></td></tr>
+                <tr><td class="tbl-name">Omar Waiter</td><td style="color:var(--text-muted);font-style:italic">Front-of-House</td><td><span class="badge b-hot">Inactive</span></td><td><button class="btn btn-ghost btn-sm">Edit</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- ADD ITEM MODAL -->
+<div class="modal-overlay" id="addItemModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="addItemTitle">Add New Dish</div>
+      <button class="modal-close" onclick="closeModal('addItemModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="fg"><label class="form-label">Dish Name *</label><input class="form-input" id="itemName" placeholder="e.g. Truffle Arancini"/></div>
+        <div class="fg"><label class="form-label">Category *</label>
+          <select class="form-select" id="itemCategory">
+            <option value="">Choose…</option><option>Starters</option><option>Mains</option><option>Desserts</option><option>Beverages</option><option>Brunch</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label class="form-label">Description</label><textarea class="form-textarea" id="itemDesc" placeholder="Describe the dish, its flavours, origin…"></textarea></div>
+      <div class="form-row">
+        <div class="fg"><label class="form-label">Price (USD) *</label><input class="form-input" id="itemPrice" type="number" step="0.01" min="0" placeholder="0.00"/></div>
+        <div class="fg"><label class="form-label">Prep Time (mins)</label><input class="form-input" id="itemPrepTime" type="number" min="1" placeholder="20"/></div>
+      </div>
+      <div class="fg"><label class="form-label">Image URL</label><input class="form-input" id="itemImg" placeholder="https://images.unsplash.com/…"/><div style="font-size:11px;color:var(--text-faint);margin-top:5px;font-style:italic">Paste any direct image URL (Unsplash recommended)</div></div>
+      <div class="fg"><label class="form-label">Icon Emoji</label><div class="emoji-grid" id="emojiPicker"></div><input class="form-input mt-2" id="selectedEmoji" placeholder="Click an emoji above" readonly/></div>
+      <div class="fg"><label class="form-label">Tags</label>
+        <div class="checks">
+          <label class="check-pill" onclick="toggleCheck(this)"><input type="checkbox" value="veg"/><span>🌿 Vegetarian</span></label>
+          <label class="check-pill" onclick="toggleCheck(this)"><input type="checkbox" value="hot"/><span>🌶️ Spicy</span></label>
+          <label class="check-pill" onclick="toggleCheck(this)"><input type="checkbox" value="new"/><span>✨ New</span></label>
+          <label class="check-pill" onclick="toggleCheck(this)"><input type="checkbox" value="popular"/><span>⭐ Popular</span></label>
+          <label class="check-pill" onclick="toggleCheck(this)"><input type="checkbox" value="gf"/><span>🌾 Gluten Free</span></label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('addItemModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveItem()">Save Dish</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD CATEGORY -->
+<div class="modal-overlay" id="addCatModal">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Add Category</div><button class="modal-close" onclick="closeModal('addCatModal')">✕</button></div>
+    <div class="modal-body">
+      <div class="fg"><label class="form-label">Category Name *</label><input class="form-input" id="catName" placeholder="e.g. Seasonal Specials"/></div>
+      <div class="fg"><label class="form-label">Banner Image URL</label><input class="form-input" id="catImg" placeholder="https://images.unsplash.com/…"/></div>
+      <div class="fg"><label class="form-label">Icon</label><div class="emoji-grid" id="catEmojiPicker"></div><input class="form-input mt-2" id="selectedCatEmoji" placeholder="Select an emoji" readonly/></div>
+      <div class="fg"><label class="form-label">Description</label><textarea class="form-textarea" id="catDesc" placeholder="What makes this category special…"></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('addCatModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveCategory()">Add Category</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD SPECIAL -->
+<div class="modal-overlay" id="addSpecialModal">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Create Special Offer</div><button class="modal-close" onclick="closeModal('addSpecialModal')">✕</button></div>
+    <div class="modal-body">
+      <div class="fg"><label class="form-label">Offer Name *</label><input class="form-input" id="specialName" placeholder="e.g. Date Night Duo"/></div>
+      <div class="fg"><label class="form-label">Hero Image URL</label><input class="form-input" id="specialImg" placeholder="https://images.unsplash.com/…"/></div>
+      <div class="form-row">
+        <div class="fg"><label class="form-label">Original Price</label><input class="form-input" id="specialOrig" type="number" step="0.01" placeholder="0.00"/></div>
+        <div class="fg"><label class="form-label">Sale Price *</label><input class="form-input" id="specialSale" type="number" step="0.01" placeholder="0.00"/></div>
+      </div>
+      <div class="form-row">
+        <div class="fg"><label class="form-label">Valid From</label><input class="form-input" id="specialFrom" type="date"/></div>
+        <div class="fg"><label class="form-label">Valid Until</label><input class="form-input" id="specialTo" type="date"/></div>
+      </div>
+      <div class="fg"><label class="form-label">Description</label><textarea class="form-textarea" id="specialDesc" placeholder="Tell guests why this is unmissable…"></textarea></div>
+      <div class="fg"><label class="form-label">Icon</label><div class="emoji-grid" id="specialEmojiPicker"></div><input class="form-input mt-2" id="selectedSpecialEmoji" placeholder="Select an emoji" readonly/></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('addSpecialModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveSpecial()">Activate Special</button>
+    </div>
+  </div>
+</div>
+
+<!-- VIEW ITEM -->
+<div class="modal-overlay" id="viewItemModal">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title" id="viewItemTitle">Dish Details</div><button class="modal-close" onclick="closeModal('viewItemModal')">✕</button></div>
+    <div class="modal-body" id="viewItemBody"></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('viewItemModal')">Close</button>
+      <button class="btn btn-primary" id="viewItemEdit">Edit Dish</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- VIEW CATEGORY DISHES MODAL -->
+<div class="modal-overlay" id="viewCatModal">
+  <div class="modal modal-wide">
+    <div class="modal-header">
+      <div class="modal-title" id="viewCatTitle">Category Dishes</div>
+      <button class="modal-close" onclick="closeModal('viewCatModal')">✕</button>
+    </div>
+    <div class="modal-body" id="viewCatBody"></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('viewCatModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- VIEW SPECIAL DETAIL MODAL -->
+<div class="modal-overlay" id="viewSpecialModal">
+  <div class="modal modal-wide">
+    <div class="modal-header">
+      <div class="modal-title" id="viewSpecialTitle">Special Offer</div>
+      <button class="modal-close" onclick="closeModal('viewSpecialModal')">✕</button>
+    </div>
+    <div class="modal-body" id="viewSpecialBody"></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('viewSpecialModal')">Close</button>
+      <button class="btn btn-primary" onclick="closeModal('viewSpecialModal');openModal('addSpecialModal')">Create Similar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script  src="script.js">
+</script>
+</body>
+</html>
