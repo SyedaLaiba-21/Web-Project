@@ -1,16 +1,3 @@
-// const express = require("express");
-// const router = express.Router();
-
-// const {
-//     getCategories,
-//     createCategory
-// } = require("../controllers/categoryController");
-
-// router.get("/", getCategories);
-// router.post("/", createCategory);
-
-// module.exports = router;
-
 const express = require("express");
 const router = express.Router();
 const Category = require("../models/Category");
