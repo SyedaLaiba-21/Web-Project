@@ -1,16 +1,3 @@
-// const express = require("express");
-// const router = express.Router();
-
-// const {
-//     getSpecials,
-//     createSpecial
-// } = require("../controllers/specialController");
-
-// router.get("/", getSpecials);
-// router.post("/", createSpecial);
-
-// module.exports = router;
-
 const express = require("express");
 const router = express.Router();
 const Special = require("../models/Special");
